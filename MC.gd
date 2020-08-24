@@ -3,7 +3,7 @@ extends KinematicBody2D
 var velocity = Vector2(0,0)
 const SPEED = 320
 const MAX_SPEED = 900
-const JUMPFORCE = -1500
+const JUMPFORCE = -1700
 const GRAVITY = 100
 
 func _physics_process(_delta):
@@ -30,3 +30,9 @@ func _physics_process(_delta):
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
 	velocity.x = lerp(velocity.x, 0, 0.2)
+
+
+func _on_fallzone_body_entered(body):
+	print(body)
+	get_tree().change_scene("res://Level 1.tscn")
+	
