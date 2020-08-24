@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://mc_spriteframes.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://MC.gd" type="Script" id=2]
+[ext_resource path="res://Assets/sounds/jump1.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Assets/sounds/error_007.ogg" type="AudioStream" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 27.1195
@@ -21,3 +23,15 @@ playing = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.471939, 14.6301 )
 shape = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="soundJump" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -20.0
+
+[node name="soundHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -20.0
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://MC.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://font.tres" type="DynamicFont" id=9]
 [ext_resource path="res://HUD.gd" type="Script" id=10]
 [ext_resource path="res://slime.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Assets/music/Retro Beat.ogg" type="AudioStream" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 95.9206, 21.3485 )
@@ -136,7 +137,6 @@ shape = SubResource( 6 )
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="sky" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
 motion_mirroring = Vector2( 1280, 960 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/sky"]
@@ -145,7 +145,6 @@ texture = ExtResource( 5 )
 centered = false
 
 [node name="foreground2" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
 motion_scale = Vector2( 0.3, 0.3 )
 motion_mirroring = Vector2( 1120, 840 )
 
@@ -156,7 +155,6 @@ texture = ExtResource( 6 )
 centered = false
 
 [node name="background" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
 motion_scale = Vector2( 0.6, 0.6 )
 motion_mirroring = Vector2( 1600, 1200 )
 
@@ -266,6 +264,10 @@ direction = 1
 position = Vector2( 215.886, 214.299 )
 direction = 1
 floorCheck = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+autoplay = true
 [connection signal="body_entered" from="fallzone" to="MC" method="_on_fallzone_body_entered"]
 [connection signal="coin_collected" from="coins/coin3" to="HUD" method="_on_coin_collected"]
 [connection signal="coin_collected" from="coins/coin" to="HUD" method="_on_coin_collected"]
